@@ -1,0 +1,10 @@
+{
+  "name": "MapMenuPlus",
+  "version_number": "1.0.0",
+  "website_url": "",
+  "description": "A new Levels menu: big picture cards with every map's mod.io thumbnail, downloads and rating, a details page with all screenshots, search, sort, favorites, recently played and SURPRISE ME. Works with Fusion.",
+  "dependencies": [
+    "LavaGang-MelonLoader-0.7.3",
+    "bonelib-BoneLib-3.2.2"
+  ]
+}

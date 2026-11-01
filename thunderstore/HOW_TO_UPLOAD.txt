@@ -1,0 +1,41 @@
+MapMenuPlus - publishing on Thunderstore
+========================================
+
+Thunderstore wants a zip with THESE files directly inside it (no folder around them):
+    manifest.json   name, version, description, what it needs (MelonLoader + BoneLib)
+    icon.png        the 256 x 256 picture
+    README.md       the text of the mod's page
+    CHANGELOG.md    what changed in each version
+    Mods\MapMenuPlus.dll   the finished mod (NOT the .cs source files)
+
+Your zip had the mod but not the other 4 files, and the mod file has to be inside a "Mods"
+folder in the zip. This folder makes the right zip for you:
+
+STEP BY STEP
+------------
+1. You already built the mod (BUILD.bat said SUCCESS), so MapMenuPlus.dll is in BONELAB\Mods.
+   (If not: double-click BUILD.bat in the MapMenuPlus source folder first.)
+
+2. Extract this zip (right-click -> Extract All -> Extract) and open the folder
+   "MapMenuPlus_Thunderstore".
+
+3. Double-click  MAKE_THUNDERSTORE_ZIP.bat
+   It takes MapMenuPlus.dll from BONELAB\Mods, puts everything together and makes
+       MapMenuPlus-1.0.0.zip
+   A window opens with that file selected.
+
+4. On thunderstore.io -> Upload: remove the old zip, drag  MapMenuPlus-1.0.0.zip  in.
+   - Team: your team
+   - Communities: BONELAB
+   - Categories: Mods, UI (and "AI Generated" - this mod was written with an AI; the BONELAB
+     community has that tag and other mods made this way use it)
+   - Submit.
+
+LATER VERSIONS
+--------------
+For an update, change "version_number" in manifest.json (e.g. "1.0.1"), add a line to
+CHANGELOG.md, and change MapMenuPlus-1.0.0.zip in MAKE_THUNDERSTORE_ZIP.bat to the new number.
+Thunderstore refuses the same version number twice.
+
+If you want to edit the page text: edit README.md (Notepad is fine), then run the .bat again.
+Want your own picture? Replace icon.png (must be exactly 256 x 256 pixels, PNG).

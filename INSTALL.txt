@@ -1,0 +1,111 @@
+MapMenuPlus v1.0.0  -  INSTALL / BUILD / RUN
+=============================================
+
+What it is
+----------
+  A NEW LEVELS PAGE for BONELAB (open the menu with B or Y -> LEVELS):
+  - Every map as a BIG PICTURE CARD with its picture from mod.io, its name, who made it,
+    how many downloads it has and how well it is rated. So you can see what a map looks like
+    BEFORE you load it.
+  - Click a card -> the DETAILS page:
+      * a big picture, and ALL the screenshots of that mod (arrows < > beside the picture,
+        or just wait - it changes by itself every few seconds)
+      * name, author, pack, last update, downloads, % liked, the mod's description
+      * PLAY  (green button) - starts the map
+      * FAVORITE (star) - keeps the map in "Favorites"
+      * "Played 4 times, last 2 days ago"
+      * the small arrows at the top right go to the previous / next map without going back
+  - Left side (LIBRARY):
+      All Maps / Favorites / Recently Played / Not Played Yet / Mod Maps / BONELAB Maps
+      SURPRISE ME  - opens a random map from the list you are looking at
+      YOU ARE IN   - the map you are in now (click it for its details)
+  - Search box (top): click it, a keyboard opens under the menu. Searches map names, packs and authors.
+  - SORT button: A-Z / POPULAR (most downloads) / TOP RATED / NEWEST / LAST PLAYED
+  - < 1/8 >  pages (9 maps per page)
+  - CLASSIC (top right) switches back to the game's own Levels page. On the game's page a blue
+    "NEW MAP MENU" button brings this menu back. Your choice is remembered.
+  - X closes the menu.
+  - BONELAB's own maps have no mod.io picture: they get a coloured picture with their name and
+    an orange BONELAB badge. The map you are in has a green PLAYING badge.
+
+  Works with FUSION: if you are a guest in someone else's lobby, the button says REQUEST MAP and
+  the host gets your request (exactly like clicking a map on the game's own page).
+
+  THE PICTURES NEED YOUR MOD.IO LOGIN IN BONELAB
+  ----------------------------------------------
+  The mod uses the same mod.io login as BONELAB's own mod browser (and Fusion's mod downloading).
+  - If you have ever downloaded a mod INSIDE the game (or Fusion downloaded lobby mods for you),
+    you are already logged in - nothing to do.
+  - If the top of the map menu says "Log in to mod.io in BONELAB for map pictures":
+    open BONELAB's own mod browser (the mod.io part of the game's menu) and log in there
+    (mod.io sends a code to your e-mail). Then open the Levels page again.
+  - The login is only used to ASK mod.io about the maps you have installed (name, pictures,
+    downloads, rating). The mod never changes anything on your mod.io account.
+  - Pictures and info are saved on your PC (UserData\MapMenuPlus\modio), so the next time
+    they show instantly, even without internet.
+  - The first time it downloads the pictures of all your maps in the background (about 50 KB
+    per map). Maps you look at come first.
+  - Maps you installed by hand (not through the game) are searched on mod.io by their exact name.
+    Most are found; a few with a different name on mod.io keep the coloured picture.
+  - Mods marked "explicit" (18+) on mod.io show "18+ picture hidden" unless you switch on
+    "Show 18+ pictures" in BoneMenu.
+
+  BoneMenu (menu -> Preferences -> BoneMenu -> "Map Menu Plus"):
+    - New map menu                 ON / OFF (same as the CLASSIC / NEW MAP MENU buttons)
+    - Pictures + info from mod.io  ON / OFF (OFF = no internet use, coloured pictures only)
+    - Show 18+ pictures            OFF / ON
+    - Check mod.io connection      shows a message: logged in? how many maps were found?
+    - Download map info again      asks mod.io for fresh info (new downloads / ratings / pictures)
+
+You need
+--------
+  - BONELAB (Steam PC VR) with MelonLoader and BoneLib (you have them)
+  - The .NET 6 SDK (the one you installed earlier)
+  - Fusion is NOT needed (but works together with it)
+
+STEP BY STEP
+------------
+0. CLOSE BONELAB COMPLETELY first.
+
+1. Extract the zip.
+   Right-click MapMenuPlus_v1.0.0.zip -> "Extract All..." -> Extract.
+   (Do NOT run anything from inside the zip window. It must be extracted first.)
+
+2. Open the extracted folder "MapMenuPlus".
+
+3. Double-click  BUILD.bat
+   - A black window opens and builds the mod (about 20 seconds).
+   - It uses C:\steam\steamapps\common\BONELAB automatically.
+     If it cannot find the game it asks you to type the path. Type the folder that contains
+     the "Mods" and "MelonLoader" folders, for example  C:\steam\steamapps\common\BONELAB
+   - At the end you must see:  SUCCESS - MapMenuPlus 1.0.0 is installed.
+   - It copies MapMenuPlus.dll into BONELAB\Mods. It does not touch your other mods
+     (Spawn Menu Plus, Avatar Hover Preview, Laptop Share, Fusion... all stay as they are).
+
+4. Start BONELAB. Open the menu (B or Y) -> LEVELS.
+   The new map menu is there. The pictures appear within a few seconds (the first time a bit
+   slower, they are downloaded once).
+
+5. If something is wrong: quit the game, double-click  GET_LOG.bat  (in this folder) and drag
+   the files into the chat.
+
+IF SOMETHING IS WRONG
+---------------------
+- I still see the game's old Levels page: look for the blue "NEW MAP MENU" button above it and
+  press it. If there is none, send the log (GET_LOG.bat).
+- No pictures, only coloured cards: look at the top of the menu:
+    "Log in to mod.io in BONELAB..."   -> see "THE PICTURES NEED YOUR MOD.IO LOGIN" above
+    "mod.io login expired..."          -> log in again in BONELAB's mod browser
+    "No connection to mod.io"          -> no internet (saved pictures still show)
+    "mod.io pictures are off"          -> BoneMenu -> Map Menu Plus -> Pictures + info from mod.io ON
+  Or BoneMenu -> Map Menu Plus -> "Check mod.io connection".
+- A map has a wrong / no picture: BoneMenu -> "Download map info again". If it stays wrong,
+  send me the log and tell me the map's name.
+- PLAY does nothing: send the log (GET_LOG.bat) - it says exactly what happened.
+- The menu is too big / too small: tell me (it should be the same size as Spawn Menu Plus).
+- BUILD.bat fails: select all the text in the black window (or take a screenshot) and send it to me.
+
+UNINSTALL
+---------
+Delete  BONELAB\Mods\MapMenuPlus.dll
+(and the folder BONELAB\UserData\MapMenuPlus for the log, favorites, play history and saved pictures)

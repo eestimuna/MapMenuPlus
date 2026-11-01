@@ -1,0 +1,57 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    MapMenuPlus: a new Levels page with mod.io map pictures for BONELAB.
+    Builds against YOUR install (MelonLoader generates the Il2Cpp assemblies the first time the game starts).
+    Easiest way to build: double-click BUILD.bat (it sets BONELAB_DIR for you).
+  -->
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <AssemblyName>MapMenuPlus</AssemblyName>
+    <RootNamespace>MapMenuPlus</RootNamespace>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <BonelabDir>$(BONELAB_DIR)</BonelabDir>
+    <MLDir>$(BonelabDir)\MelonLoader</MLDir>
+    <!-- The two harmless warnings you saw before (architecture mismatch) are silenced. -->
+    <MSBuildWarningsAsMessages>$(MSBuildWarningsAsMessages);MSB3270;MSB3245</MSBuildWarningsAsMessages>
+    <ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>None</ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
+  </PropertyGroup>
+
+  <Target Name="CheckBonelabDir" BeforeTargets="ResolveAssemblyReferences" Condition="'$(BonelabDir)' == ''">
+    <Error Text="BONELAB_DIR is not set. Use BUILD.bat instead of running dotnet by hand." />
+  </Target>
+
+  <ItemGroup>
+    <!-- MelonLoader, Harmony, Il2CppInterop -->
+    <Reference Include="MelonLoader"><HintPath>$(MLDir)\net6\MelonLoader.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="0Harmony"><HintPath>$(MLDir)\net6\0Harmony.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Il2CppInterop.Runtime"><HintPath>$(MLDir)\net6\Il2CppInterop.Runtime.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Il2CppInterop.Common"><HintPath>$(MLDir)\net6\Il2CppInterop.Common.dll</HintPath><Private>false</Private></Reference>
+
+    <!-- BoneLib (must be installed in Mods) -->
+    <Reference Include="BoneLib"><HintPath>$(BonelabDir)\Mods\BoneLib.dll</HintPath><Private>false</Private></Reference>
+
+    <!-- Generated game assemblies (the same set the avatar menu mod builds against) -->
+    <Reference Include="Assembly-CSharp"><HintPath>$(MLDir)\Il2CppAssemblies\Assembly-CSharp.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine.PhysicsModule"><HintPath>$(MLDir)\Il2CppAssemblies\UnityEngine.PhysicsModule.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine.ImageConversionModule"><HintPath>$(MLDir)\Il2CppAssemblies\UnityEngine.ImageConversionModule.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Il2CppSLZ.Marrow"><HintPath>$(MLDir)\Il2CppAssemblies\Il2CppSLZ.Marrow.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Il2CppUniTask"><HintPath>$(MLDir)\Il2CppAssemblies\Il2CppUniTask.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Il2Cppmscorlib"><HintPath>$(MLDir)\Il2CppAssemblies\Il2Cppmscorlib.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Il2CppTMPro"><HintPath>$(MLDir)\Il2CppAssemblies\Unity.TextMeshPro.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine.CoreModule"><HintPath>$(MLDir)\Il2CppAssemblies\UnityEngine.CoreModule.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine.UI"><HintPath>$(MLDir)\Il2CppAssemblies\UnityEngine.UI.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine.UIModule"><HintPath>$(MLDir)\Il2CppAssemblies\UnityEngine.UIModule.dll</HintPath><Private>false</Private></Reference>
+  </ItemGroup>
+
+
+  <!-- Copy the built DLL straight into Mods so a build = installed -->
+  <Target Name="CopyToMods" AfterTargets="Build" Condition="Exists('$(BonelabDir)\Mods')">
+    <Copy SourceFiles="$(OutputPath)$(AssemblyName).dll" DestinationFolder="$(BonelabDir)\Mods" />
+  </Target>
+
+</Project>
