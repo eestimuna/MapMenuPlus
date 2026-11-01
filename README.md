@@ -29,14 +29,6 @@ The pictures and numbers come from the mod.io API, which needs a login. The mod 
 - Players can switch it off: BoneMenu -> Map Menu Plus -> "Pictures + info from mod.io".
 - Pictures and info are cached in `UserData/MapMenuPlus/modio`.
 
-## Building
-
-1. Start BONELAB once with MelonLoader, so `MelonLoader/Il2CppAssemblies` exists.
-2. Install the .NET SDK (6 or newer).
-3. Double-click `BUILD.bat`. It finds the game, builds the mod, and copies `MapMenuPlus.dll` into `BONELAB/Mods`.
-
-See `INSTALL.txt` for the full steps. To make the Thunderstore package, run `thunderstore/MAKE_THUNDERSTORE_ZIP.bat` after building.
-
 ## Code layout
 
 | File | What it does |
